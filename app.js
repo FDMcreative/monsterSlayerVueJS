@@ -9,8 +9,8 @@ window.addEventListener('load', function () {
       playerPoints: 100,
       monsterPoints: 100,
       wounds: false,
-      gameStarted: false,
-      gameLog: []
+      gameLog: [],
+      gameStarted: false
     },
     methods: {
       startGame: function () {
@@ -18,6 +18,7 @@ window.addEventListener('load', function () {
         this.playerPoints = 100;
         this.monsterPoints = 100;
         this.wounds = false;
+        this.gameLog = [];
         this.gameStarted = true;
       },
       attack: function () {
