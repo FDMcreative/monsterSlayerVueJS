@@ -18,9 +18,10 @@
 
             <div class="small-6 columns">
                 <h1 class="text-center">YOU</h1>
-                <div class="healthbar" :style="{ width: playerPoints + '%' }">
+                <div class="healthbar">
                     <div class="healthbar text-center"
-                        style="background-color: green; margin: 0; color: white;">
+                        style="background-color: green; margin: 0; color: white;"
+                        :style="{ width: playerPoints + '%' }">
                         {{playerPoints}}
                     </div>
                 </div>
@@ -28,9 +29,10 @@
 
             <div class="small-6 columns">
                 <h1 class="text-center">MONSTER</h1>
-                <div class="healthbar" :style="{ width: monsterPoints + '%' }">
+                <div class="healthbar">
                     <div class="healthbar text-center"
-                        style="background-color: green; margin: 0; color: white;">
+                        style="background-color: green; margin: 0; color: white;"
+                        :style="{ width: monsterPoints + '%' }">
                         {{monsterPoints}}
                     </div>
                 </div>
