@@ -70,14 +70,20 @@ window.addEventListener('load', function () {
       playerPoints: function () {
         if (this.playerPoints <= 0) {
           this.gameStarted = false;
-          let promise = new Promise((resolve, reject) => {
-            resolve(this.dialogBox('YOU LOST. Wanna play again?'));
-          });
-          promise.then((x) => {
-            if (x) {
-              this.startGame();
-            }
-          })
+          let x = this.dialogBox('YOU LOST. Wanna play again?')
+          if (x) {
+            this.startGame();
+          }
+          // USING PROMISE (THERE IS PROBLEM OF BOTH WATCH TRIGGERING)
+          // let promise = new Promise((resolve, reject) => {
+          //   resolve(this.dialogBox('YOU LOST. Wanna play again?'));
+          // });
+          // promise.then((x) => {
+          //   if (x) {
+          //     this.startGame();
+          //   }
+          // })
+
         }
 
       },
