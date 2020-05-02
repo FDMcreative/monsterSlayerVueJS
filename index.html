@@ -58,7 +58,8 @@
         <section class="row log" v-show="gameStarted && wounds">
             <div class="small-12 columns">
                 <ul>
-                    <li v-for="entry in gameLog">
+                    <li :class="{ 'monster-turn': (index%2 != 0), 'player-turn': (index%2 == 0) }"
+                        v-for="(entry, index) in gameLog">
                         {{entry}}
                     </li>
                 </ul>
