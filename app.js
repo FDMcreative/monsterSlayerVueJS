@@ -10,7 +10,7 @@ window.addEventListener('load', function () {
       monsterPoints: 100,
       wounds: false,
       gameLog: [],
-      gameStarted: false
+      gameRunning: false
     },
     methods: {
       startGame: function () {
@@ -19,13 +19,13 @@ window.addEventListener('load', function () {
         this.monsterPoints = 100;
         this.wounds = false;
         this.gameLog = [];
-        this.gameStarted = true;
+        this.gameRunning = true;
       },
       attack: function () {
         console.log('attack');
         this.wounds = true;
-        x = Math.ceil(this.randomNum() * 10);
-        y = Math.ceil(this.randomNum() * 10);
+        let x = Math.ceil(this.randomNum() * 10);
+        let y = Math.ceil(this.randomNum() * 10);
         this.monsterPoints -= x;
         this.playerPoints -= y;
         this.pushLog('You inflicted ' + x + ' damages');
@@ -34,8 +34,8 @@ window.addEventListener('load', function () {
       specialAttack: function () {
         console.log('special attack');
         this.wounds = true;
-        x = Math.ceil(this.randomNum() * 20);
-        y = Math.ceil(this.randomNum() * 20);
+        let x = Math.ceil(this.randomNum() * 20);
+        let y = Math.ceil(this.randomNum() * 20);
         this.monsterPoints -= x;
         this.playerPoints -= y;
         this.pushLog('You inflicted ' + x + ' damages');
@@ -43,8 +43,8 @@ window.addEventListener('load', function () {
       },
       heal: function () {
         console.log('heal');
-        x = Math.ceil(this.randomNum() * 10);
-        y = Math.ceil(this.randomNum() * 10);
+        let x = Math.ceil(this.randomNum() * 10);
+        let y = Math.ceil(this.randomNum() * 10);
         this.playerPoints += x;
         this.playerPoints -= y;
         this.pushLog('You healed ' + x + ' damages');
@@ -52,25 +52,22 @@ window.addEventListener('load', function () {
       },
       giveUp: function () {
         console.log('give up');
-        this.gameStarted = false;
+        this.gameRunning = false;
       },
       // RANDOM NUM
       randomNum: function () {
         return Math.random();
       },
-      // DIALOG BOX
-      dialogBox: function (text) {
-        return confirm(text);
-      },
+
       pushLog: function (entry) {
-        this.gameLog.push(entry);
+        this.gameLog.unshift(entry);
       }
     },
     watch: {
       playerPoints: function () {
-        if (this.playerPoints <= 0) {
-          this.gameStarted = false;
-          let x = this.dialogBox('YOU LOST. Wanna play again?')
+        if (this.playerPoints <= 0 & this.gameRunning === true) {
+          this.gameRunning = false;
+          let x = confirm('YOU LOST. Wanna play again?')
           if (x) {
             this.startGame();
           }
@@ -83,14 +80,13 @@ window.addEventListener('load', function () {
           //     this.startGame();
           //   }
           // })
-
         }
 
       },
       monsterPoints: function () {
-        if (this.monsterPoints <= 0) {
-          this.gameStarted = false;
-          let x = this.dialogBox('YOU WON. Wanna play again?')
+        if (this.monsterPoints <= 0 & this.gameRunning === true) {
+          this.gameRunning = false;
+          let x = confirm('YOU WON. Wanna play again?')
           if (x) {
             this.startGame();
           }

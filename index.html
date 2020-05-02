@@ -41,7 +41,7 @@
         </section>
 
         <!-- START BUTTON -->
-        <section class="row controls" v-if="!gameStarted">
+        <section class="row controls" v-if="!gameRunning">
             <div class="small-12 columns">
                 <button @click="startGame" id="start-game">START NEW GAME</button>
             </div>
@@ -57,10 +57,10 @@
             </div>
         </section>
 
-        <section class="row log" v-show="gameStarted && wounds">
+        <section class="row log" v-show="gameRunning && wounds">
             <div class="small-12 columns">
                 <ul>
-                    <li :class="{ 'monster-turn': (index%2 != 0), 'player-turn': (index%2 == 0) }"
+                    <li :class="{ 'monster-turn': (index%2 == 0), 'player-turn': (index%2 != 0) }"
                         v-for="(entry, index) in gameLog">
                         {{entry}}
                     </li>
